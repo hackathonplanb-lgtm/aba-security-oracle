@@ -11,7 +11,7 @@ from sklearn.cluster import KMeans
 st.set_page_config(page_title="Aba Security Oracle", layout="wide")
 st.title("ABA SECURITY ORACLE")
 st.markdown("### Real-Time Crime Prediction & Hotspot Mapping System")
-st.markdown("**Built by: [YOUR FULL NAME] – Final Year Project 2025**")
+st.markdown("**Built by: [Team Great] – DeepFunding Hackathon**")
 
 # Load data
 @st.cache_data
