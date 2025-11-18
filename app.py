@@ -11,7 +11,7 @@ st.set_page_config(page_title="Aba Security Oracle", layout="wide", initial_side
 
 # Title & Credit
 st.title("ABA SECURITY ORACLE")
-st.markdown("**Built by: Team Great (resilience-lgtm) – Deep-Fuding-Hackathon-sketch**")
+st.markdown("**Built by: Team Great (resilience) – Deep-Fuding-Hackathon-sketch**")
 st.markdown("**Real-Time Predictive Policing System for Aba, Abia State**")
 
 # Load data
@@ -55,16 +55,16 @@ if 'pred_date' in st.session_state:
 
     # Realistic multipliers (based on real Aba patterns)
     if d.month in [5,6,7,8,9,10]: 
-        mul *= 1.2; triggers.append("Rainy Season (+70%)")
+        mul *= 1.7; triggers.append("Rainy Season (+70%)")
     if d.weekday() == 0: 
-        mul *= 1.5; triggers.append("Sit-at-Home Monday (+200%)")
+        mul *= 3.0; triggers.append("Sit-at-Home Monday (+200%)")
     if d.day >= 25: 
-        mul *= 0.5; triggers.append("Salary Week (+50%)")
+        mul *= 1.5; triggers.append("Salary Week (+50%)")
     if d.weekday() in [2,5]: 
-        mul *= 0.8; triggers.append("Big Market Day (+80%)")
+        mul *= 1.8; triggers.append("Big Market Day (+80%)")
 
     # CAP AT 5× MAX — no more 200+ crimes nonsense
-    mul = min(mul, 2.0)
+    mul = min(mul, 5.0)
 
     # Realistic baseline (normal day = 6–12 crimes per hotspot)
     base = [10, 8, 12, 7, 9, 8, 7, 10]
@@ -92,4 +92,4 @@ if 'pred_date' in st.session_state:
 st_folium(m, width=1200, height=650, key=f"map_{st.session_state.get('pred_date', 'initial')}")
 
 # Footer
-st.caption("Live • Realistic • On-Demand • Built by Chibuike Okeke & Team Great")
+st.caption("Live • Realistic • On-Demand • Built by Team Great")
