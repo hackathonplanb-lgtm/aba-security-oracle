@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import folium
@@ -7,66 +6,80 @@ from streamlit_folium import st_folium
 from datetime import datetime, timedelta
 import numpy as np
 from sklearn.cluster import KMeans
-st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
-st.set_page_config(page_title="Aba Security Oracle", layout="wide")
-st.title("ABA SECURITY ORACLE")
-st.markdown("### Real-Time Crime Prediction & Hotspot Mapping System")
-st.markdown("**Built by: [Team Great] – DeepFunding Hackathon**")
+st.set_page_config(page_title="Aba Security Oracle", layout="wide", initial_sidebar_state="expanded")
+
+st.title("🔮 ABA SECURITY ORACLE")
+st.markdown("**Built by: Chibuike Okeke (hackathonplanb-lgtm) – B.Sc Computer Science 2025**")
+st.markdown("**Real-Time Predictive Policing System for Aba, Abia State**")
 
 # Load data
-@st.cache_data
-def load_data():
-    incidents = pd.read_csv("incidents.csv")
-    police = pd.read_csv("police.csv")
-    return incidents, police
-
-incidents, police = load_data()
+incidents = pd.read_csv("incidents.csv")
+police = pd.read_csv("police.csv")
 
 # Sidebar
 with st.sidebar:
-    st.header("Prediction Controls")
+    st.header("Prediction Command Center")
     predict_date = st.date_input("Select date to predict:", datetime.now() + timedelta(days=1))
-    if st.button("Generate Map & Prediction", type="primary"):
+    if st.button("🔥 RUN PREDICTION", type="primary", use_container_width=True):
         st.session_state.pred_date = predict_date
 
-# Main map
 m = folium.Map(location=[5.107, 7.369], zoom_start=13, tiles="CartoDB positron")
-
-# Heatmap
 HeatMap(incidents[['lat','lon']].values.tolist(), radius=14, blur=20).add_to(m)
 
-# Hotspots
+# Current hotspots
 kmeans = KMeans(n_clusters=8, random_state=42, n_init=10)
 clusters = kmeans.fit_predict(incidents[['lat','lon']])
 centers = kmeans.cluster_centers_
+names = ["Ariaria", "Ngwa Road", "Osisioma", "Ogbor Hill", "Ekeoha", "Asa Road", "Faulks Road", "Port Harcourt Rd"]
 
 for i, (lat, lon) in enumerate(centers):
     count = sum(clusters == i)
-    risk = "HIGH" if count > 20 else "MEDIUM" if count > 10 else "LOW"
     color = "red" if count > 20 else "orange" if count > 10 else "lime"
-    folium.Circle(
-        [lat, lon], radius=700, color=color, fill=True, fillOpacity=0.4,
-        popup=f"<b>Hotspot {i+1}</b><br>Crimes: {count}<br>Risk: {risk}"
-    ).add_to(m)
+    folium.Circle([lat, lon], radius=700, color=color, fill=True, fillOpacity=0.4,
+                  popup=f"<b>{names[i]}</b><br>Past crimes: {count}").add_to(m)
 
-# Police stations
-for _, row in police.iterrows():
-    folium.CircleMarker(
-        [row.lat, row.lon], radius=9, color="blue", fill=True, fillOpacity=0.8,
-        popup=f"<b>{row['name']}</b>"
-    ).add_to(m)
+# POLICE
+for _, r in police.iterrows():
+    folium.CircleMarker([r.lat, r.lon], radius=9, color="blue", fill=True, 
+                         popup=r.get("name","Police Station")).add_to(m)
 
-# Display map
-if 'date' in st.session_state:
-    st.success(f"Prediction for {st.session_state.date} — see dark-red rings")
+# === PREDICTION ENGINE ===
+if 'pred_date' in st.session_state:
+    d = st.session_state.pred_date
+    mul = 1.0
+    triggers = []
+    
+    if d.month in [5,6,7,8,9,10]: 
+        mul *= 2.5; triggers.append("Rainy Season")
+    if d.weekday() == 0: 
+        mul *= 5.0; triggers.append("Sit-at-Home Monday")
+    if d.day >= 25: 
+        mul *= 2.0; triggers.append("Salary Week")
+    if d.weekday() in [2,5]: 
+        mul *= 3.0; triggers.append("Ariaria Big Market Day")
+    
+    base = [15,12,18,10,14,11,9,13]
+    pred = [int(b * mul) for b in base]
+    
+    # TEXT PREDICTION
+    st.success(f"**PREDICTION FOR {d.strftime('%A, %B %d, %Y')}** ×{mul:.1f} risk")
+    st.warning("⚠️ **HIGH-RISK ZONES TODAY:**")
+    high = []
+    for i, c in enumerate(pred):
+        if c >= 40:
+            high.append(f"**{names[i]}**: {c} crimes expected")
+            folium.Circle([centers[i][0], centers[i][1]], radius=1500, color="#8B0000", weight=8, fill=False,
+                          popup=f"<b>ALERT: {c} crimes predicted</b>").add_to(m)
+        elif c >= 20:
+            folium.Circle([centers[i][0], centers[i][1]], radius=1000, color="red", weight=5, fill=False).add_to(m)
+    
+    if high:
+        st.error(" → " + " | ".join(high))
+    else:
+        st.info("Moderate risk across Aba today")
 
-st_folium(m, width=1200, height=650, key="map" + st.session_state.get('date', ''))
+# Show map
+st_folium(m, width=1200, height=650, key=f"map_{hash(str(st.session_state.get('pred_date','')))}")
 
-# Statistics
-col1, col2, col3 = st.columns(3)
-col1.metric("Total Incidents", len(incidents))
-col2.metric("Crime Hotspots", 8)
-col3.metric("Police Stations", len(police))
-
-st.success("Live System • Updates Daily • Powered by Real Crime Data")
+st.caption("Live • On-Demand • Built by Chibuike Okeke")
