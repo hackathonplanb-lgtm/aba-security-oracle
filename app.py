@@ -58,7 +58,10 @@ for _, row in police.iterrows():
     ).add_to(m)
 
 # Display map
-st_folium(m, width=1200, height=600)
+if 'date' in st.session_state:
+    st.success(f"Prediction for {st.session_state.date} — see dark-red rings")
+
+st_folium(m, width=1200, height=650, key="map" + st.session_state.get('date', ''))
 
 # Statistics
 col1, col2, col3 = st.columns(3)
