@@ -7,6 +7,7 @@ from streamlit_folium import st_folium
 from datetime import datetime, timedelta
 import numpy as np
 from sklearn.cluster import KMeans
+st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
 st.set_page_config(page_title="Aba Security Oracle", layout="wide")
 st.title("ABA SECURITY ORACLE")
