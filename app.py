@@ -43,7 +43,7 @@ centers = kmeans.cluster_centers_
 for i, (lat, lon) in enumerate(centers):
     count = sum(clusters == i)
     risk = "HIGH" if count > 20 else "MEDIUM" if count > 10 else "LOW"
-    color = "red" if count > 20 else "orange" if count > 10 else lime
+    color = "red" if count > 20 else "orange" if count > 10 else "lime"
     folium.Circle(
         [lat, lon], radius=700, color=color, fill=True, fillOpacity=0.4,
         popup=f"<b>Hotspot {i+1}</b><br>Crimes: {count}<br>Risk: {risk}"
