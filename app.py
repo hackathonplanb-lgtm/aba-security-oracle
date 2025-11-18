@@ -5,91 +5,83 @@ from folium.plugins import HeatMap
 from streamlit_folium import st_folium
 from datetime import datetime, timedelta
 from sklearn.cluster import KMeans
+import numpy as np
 
-# Page config
 st.set_page_config(page_title="Aba Security Oracle", layout="wide", initial_sidebar_state="expanded")
-
-# Title & Credit
 st.title("ABA SECURITY ORACLE")
-st.markdown("**Built by: Team Great (resilience) – Deep-Fuding-Hackathon-sketch**")
-st.markdown("**Real-Time Predictive Policing System for Aba, Abia State**")
+st.markdown("**Built by: Team Udo (resilience) – Deep-Funding-Hackathon**")
+st.markdown("**Advanced Predictive Policing & Tactical Response System**")
 
 # Load data
 incidents = pd.read_csv("incidents.csv")
 police = pd.read_csv("police.csv")
 
-# Sidebar — Prediction Command Center
 with st.sidebar:
-    st.header("Prediction Command Center")
-    predict_date = st.date_input("Select date to predict:", datetime.now() + timedelta(days=1))
-    if st.button("RUN PREDICTION", type="primary", use_container_width=True):
-        st.session_state.pred_date = predict_date
-        st.success(f"Prediction generated for {predict_date.strftime('%A, %B %d, %Y')}")
+    st.header("Command Center")
+    predict_date = st.date_input("Predict for:", datetime.now() + timedelta(days=1))
+    if st.button("GENERATE TACTICAL BRIEF", type="primary", use_container_width=True):
+        st.session_state.date = predict_date
 
 # Base map
 m = folium.Map(location=[5.107, 7.369], zoom_start=13, tiles="CartoDB positron")
-HeatMap(incidents[['lat','lon']].values.tolist(), radius=14, blur=20).add_to(m)
 
-# Current hotspots (historical)
+# 1. Heatmap + Hotspots
+HeatMap(incidents[['lat','lon']].values.tolist(), radius=15).add_to(m)
 kmeans = KMeans(n_clusters=8, random_state=42, n_init=10)
 clusters = kmeans.fit_predict(incidents[['lat','lon']])
 centers = kmeans.cluster_centers_
-names = ["Ariaria", "Ngwa Road", "Osisioma", "Ogbor Hill", "Ekeoha", "Asa Road", "Faulks Road", "Port Harcourt Rd"]
+names = ["Ariaria","Ngwa Rd","Osisioma","Ogbor Hill","Ekeoha","Asa Rd","Faulks Rd","P.H. Rd"]
 
 for i, (lat, lon) in enumerate(centers):
     count = sum(clusters == i)
     color = "red" if count > 20 else "orange" if count > 10 else "lime"
-    folium.Circle([lat, lon], radius=700, color=color, fill=True, fillOpacity=0.4,
-                  popup=f"<b>{names[i]}</b><br>Past crimes: {count}").add_to(m)
+    folium.Circle([lat, lon], radius=800, color=color, fill=True, fillOpacity=0.3,
+                  popup=f"<b>{names[i]}</b><br>Crimes: {count}").add_to(m)
 
-# Police stations
+# 2. Police stations + 2km coverage
 for _, r in police.iterrows():
-    folium.CircleMarker([r.lat, r.lon], radius=9, color="blue", fill=True,
-                         popup=r.get("name", "Police Station")).add_to(m)
+    folium.Circle([r.lat, r.lon], radius=2000, color="blue", weight=2, fill=False,
+                  popup=f"<b>{r.get('name','Police')}</b><br>Coverage: 2km").add_to(m)
+    folium.CircleMarker([r.lat, r.lon], radius=10, color="darkblue", fill=True,
+                        popup=r.get("name","Police")).add_to(m)
 
-# === REALISTIC PREDICTION ENGINE ===
-if 'pred_date' in st.session_state:
-    d = st.session_state.pred_date
-    mul = 1.0
-    triggers = []
+# 3. Escape routes (simulated safe paths)
+escape_routes = [
+    [(5.116, 7.355), (5.105, 7.370)],  # From Osisioma → City center
+    [(5.100, 7.380), (5.110, 7.360)],  # Ariaria → Safe zone
+]
+for route in escape_routes:
+    folium.PolyLine(route, color="cyan", weight=6, opacity=0.8,
+                    popup="Recommended Escape Route").add_to(m)
+    folium.PolyLine(route, color="blue", weight=10, opacity=0.4).add_to(m)
 
-    # Realistic multipliers (based on real Aba patterns)
-    if d.month in [5,6,7,8,9,10]: 
-        mul *= 1.7; triggers.append("Rainy Season (+70%)")
-    if d.weekday() == 0: 
-        mul *= 3.0; triggers.append("Sit-at-Home Monday (+200%)")
-    if d.day >= 25: 
-        mul *= 1.5; triggers.append("Salary Week (+50%)")
-    if d.weekday() in [2,5]: 
-        mul *= 1.8; triggers.append("Big Market Day (+80%)")
+# 4. Legend
+legend_html = '''
+<div style="position: fixed; bottom: 50px; left: 50px; width: 200px; background: white; 
+            border:2px solid grey; z-index:9999; padding: 10px; border-radius: 10px">
+<h4>Legend</h4>
+<i style="background:red; width:15px; height:15px; display:inline-block"></i> High Crime<br>
+<i style="background:orange"></i> Medium Crime<br>
+<i style="background:lime"></i> Low Crime<br>
+<i style="background:blue; border-radius:50%"></i> Police Station<br>
+<i style="background:cyan; width:20px; height:4px; display:inline-block"></i> Escape Route
+</div>
+'''
+m.get_root().html.add_child(folium.Element(legend_html))
 
-    # CAP AT 5× MAX — no more 200+ crimes nonsense
-    mul = min(mul, 5.0)
+# 5. Prediction + GPT-style summary
+if 'date' in st.session_state:
+    d = st.session_state.date
+    risk = "VERY HIGH" if d.weekday() == 0 and d.day >= 25 else "HIGH" if d.weekday() == 0 else "ELEVATED" if d.month in [5,6,7,8,9,10] else "MODERATE"
+    st.error(f"TACTICAL BRIEF — {d.strftime('%A, %B %d')}")
+    st.warning(f"**Threat Level:** {risk}")
+    st.info("**Recommended Actions:**\n"
+            "• Deploy 15–20 officers to Osisioma & Ariaria by 05:00\n"
+            "• Set up checkpoints on Ngwa Road & Faulks Road\n"
+            "• Use escape routes for VIP movement\n"
+            "• Increase night patrol in Ekeoha & Ogbor Hill")
 
-    # Realistic baseline (normal day = 6–12 crimes per hotspot)
-    base = [10, 8, 12, 7, 9, 8, 7, 10]
-    pred = [int(b * mul) for b in base]
+# Show map
+st_folium(m, width=1200, height=700, key=f"final_{hash(str(st.session_state.get('date','')))}")
 
-    # Show prediction text
-    st.success(f"**PREDICTION FOR {d.strftime('%A, %B %d, %Y')}**")
-    st.warning("**Risk Multiplier:** ×{:.1f} ({})".format(mul, ", ".join(triggers) if triggers else "Normal Day"))
-
-    high_risk = []
-    for i, c in enumerate(pred):
-        if c >= 30:
-            high_risk.append(f"**{names[i]}**: {c} crimes")
-            folium.Circle([centers[i][0], centers[i][1]], radius=1800, color="#8B0000", weight=10, fill=False,
-                          popup=f"<b>ALERT: {c} crimes predicted!</b>").add_to(m)
-        elif c >= 20:
-            folium.Circle([centers[i][0], centers[i][1]], radius=1200, color="red", weight=6, fill=False).add_to(m)
-
-    if high_risk:
-        st.error("**HIGH-RISK ZONES:** " + " | ".join(high_risk))
-    else:
-        st.info("Moderate activity expected across Aba")
-
-# Display map — THIS LINE MAKES PREDICTION APPEAR!
-st_folium(m, width=1200, height=650, key=f"map_{st.session_state.get('pred_date', 'initial')}")
-
-# Footer
-st.caption("Live • Realistic • On-Demand • Built by Team Great")
+st.success("Live • Tactical • Built with OpenStreetMap • Team Udo Development")
