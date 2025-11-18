@@ -44,28 +44,7 @@ for _, row in police.iterrows():
     folium.CircleMarker([row.lat, row.lon], radius=11, color="darkblue", fill=True,
                         popup=f"<b>{row.get('name', 'Police Station')}</b>").add_to(m)
 
-# Safe Escape Routes (CYAN)
-safe_routes = [
-    [[5.116, 7.355], [5.105, 7.370]],
-    [[5.100, 7.380], [5.110, 7.360]],
-]
-for route in safe_routes:
-    folium.PolyLine(route, color="cyan", weight=10, opacity=0.9,
-                    popup="Recommended Escape Route").add_to(m)
-    folium.RegularPolygonMarker(location=route[-1], fill_color="cyan", number_of_sides=3,
-                                rotation=30, radius=12).add_to(m)
-
-# Criminal Escape Routes (PURPLE — to be blocked)
-criminal_routes = [
-    [[5.095, 7.375], [5.080, 7.390]],
-    [[5.120, 7.350], [5.140, 7.330]],
-]
-for route in criminal_routes:
-    folium.PolyLine(route, color="purple", weight=8, opacity=0.9, dash_array='10 10',
-                    popup="Criminal Escape Route — Deploy Checkpoint").add_to(m)
-
-# YOUR EXACT LEGEND — WORD FOR WORD
-# Safe Escape Routes → NOW RED (most important path!)
+# RECOMMENDED SAFE ESCAPE ROUTES — NOW RED (MOST VISIBLE!)
 safe_routes = [
     [[5.116, 7.355], [5.105, 7.370]],
     [[5.100, 7.380], [5.110, 7.360]],
@@ -76,16 +55,16 @@ for route in safe_routes:
     folium.RegularPolygonMarker(location=route[-1], fill_color="red", number_of_sides=3,
                                 rotation=30, radius=14).add_to(m)
 
-# Criminal Escape Routes → still purple (to block)
+# CRIMINAL ESCAPE ROUTES — PURPLE DASHED (TO BE BLOCKED)
 criminal_routes = [
     [[5.095, 7.375], [5.080, 7.390]],
     [[5.120, 7.350], [5.140, 7.330]],
 ]
 for route in criminal_routes:
     folium.PolyLine(route, color="purple", weight=8, opacity=0.9, dash_array='10 10',
-                    popup="Criminal Escape Route — Deploy Checkpoint").add_to(m)
+                    popup="CRIMINAL ESCAPE ROUTE — DEPLOY CHECKPOINT").add_to(m)
 
-# UPDATED LEGEND — TEXT NOW WITH RED TEXT + RED ESCAPE ROUTE
+# PERFECT LEGEND — RED TEXT + RED ESCAPE ROUTE
 legend_html = '''
 <div style="position: fixed; bottom: 30px; left: 30px; width: 340px; height: 260px; 
      background-color: white; border:3px solid #2c3e50; z-index:9999; font-size:15px; 
@@ -101,10 +80,8 @@ legend_html = '''
 </div>
 '''
 m.get_root().html.add_child(folium.Element(legend_html))
-'''
-m.get_root().html.add_child(folium.Element(legend_html))
 
-# Prediction
+# Prediction Engine
 if 'pred' in st.session_state:
     d = st.session_state.pred
     mul = 1.0
@@ -123,7 +100,8 @@ if 'pred' in st.session_state:
             if c >= 30:
                 folium.Circle([centers[i][0], centers[i][1]], radius=1400, color="#8B0000", weight=10, fill=False).add_to(m)
 
-# Show map
-st_folium(m, width=1200, height=720, key=f"map_{st.session_state.get('pred', 'base')}")
+# Display map
+st_folium(m, width=1200, height=720, key=f"map_{hash(str(st.session_state.get('pred', '')))}")
 
-st.caption("Live • Tactical • Professional • Built by Chibuike & Team Great")
+# Footer
+st.caption("Live • Tactical • Professional • Built by Team Udo")
