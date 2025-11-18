@@ -65,19 +65,42 @@ for route in criminal_routes:
                     popup="Criminal Escape Route — Deploy Checkpoint").add_to(m)
 
 # YOUR EXACT LEGEND — WORD FOR WORD
+# Safe Escape Routes → NOW RED (most important path!)
+safe_routes = [
+    [[5.116, 7.355], [5.105, 7.370]],
+    [[5.100, 7.380], [5.110, 7.360]],
+]
+for route in safe_routes:
+    folium.PolyLine(route, color="red", weight=12, opacity=0.95,
+                    popup="RECOMMENDED SAFE ESCAPE ROUTE").add_to(m)
+    folium.RegularPolygonMarker(location=route[-1], fill_color="red", number_of_sides=3,
+                                rotation=30, radius=14).add_to(m)
+
+# Criminal Escape Routes → still purple (to block)
+criminal_routes = [
+    [[5.095, 7.375], [5.080, 7.390]],
+    [[5.120, 7.350], [5.140, 7.330]],
+]
+for route in criminal_routes:
+    folium.PolyLine(route, color="purple", weight=8, opacity=0.9, dash_array='10 10',
+                    popup="Criminal Escape Route — Deploy Checkpoint").add_to(m)
+
+# UPDATED LEGEND — TEXT NOW WITH RED TEXT + RED ESCAPE ROUTE
 legend_html = '''
-<div style="position: fixed; bottom: 30px; left: 30px; width: 320px; height: 250px; 
+<div style="position: fixed; bottom: 30px; left: 30px; width: 340px; height: 260px; 
      background-color: white; border:3px solid #2c3e50; z-index:9999; font-size:15px; 
      padding: 15px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
  <h4 style="margin:0 0 12px 0; text-align:center; color:#2c3e50;"><b>MAP LEGEND</b></h4>
  <hr style="border:1px solid #ddd; margin:10px 0;">
- <p><i style="background:red; width:22px; height:22px; float:left; margin:8px 8px 8px 0; opacity:0.7;"></i><b>Red</b> — High-Risk Crime Hotspot</p>
- <p><i style="background:orange; width:22px; height:22px; float:left; margin:8px 8px 8px 0; opacity:0.7;"></i><b>Orange</b> — Medium-Risk Zone</p>
- <p><i style="background:lime; width:22px; height:22px; float:left; margin:8px 8px 8px 0; opacity:0.7;"></i><b>Lime Green</b> — Low-Risk Area</p>
- <p><i style="background:darkblue; border-radius:50%; width:22px; height:22px; float:left; margin:8px 8px 8px 0;"></i><b>Blue Circle</b> — Police Station</p>
- <p><i style="background:cyan; width:45px; height:8px; float:left; margin:10px 8px 8px 0;"></i><b>Cyan Line</b> — Recommended Escape Route</p>
- <p><i style="background:purple; width:45px; height:8px; float:left; margin:10px 8px 8px 0; border:2px dashed purple;"></i><b>Purple Line</b> — Criminal Escape Route (Block!)</p>
+ <p style="color:red; font-weight:bold;"><i style="background:red; width:22px; height:22px; float:left; margin:8px 8px 8px 0; opacity:0.7;"></i>Red — High-Risk Crime Hotspot</p>
+ <p style="color:red; font-weight:bold;"><i style="background:orange; width:22px; height:22px; float:left; margin:8px 8px 8px 0; opacity:0.7;"></i>Orange — Medium-Risk Zone</p>
+ <p style="color:red; font-weight:bold;"><i style="background:lime; width:22px; height:22px; float:left; margin:8px 8px 8px 0; opacity:0.7;"></i>Lime Green — Low-Risk Area</p>
+ <p style="color:red; font-weight:bold;"><i style="background:darkblue; border-radius:50%; width:22px; height:22px; float:left; margin:8px 8px 8px 0;"></i>Blue Circle — Police Station</p>
+ <p style="color:red; font-weight:bold;"><i style="background:red; width:50px; height:10px; float:left; margin:10px 8px 8px 0;"></i>Red Line — Recommended Escape Route</p>
+ <p style="color:purple; font-weight:bold;"><i style="background:purple; width:50px; height:8px; float:left; margin:10px 8px 8px 0; border:2px dashed purple;"></i>Purple Line — Criminal Escape Route (Block!)</p>
 </div>
+'''
+m.get_root().html.add_child(folium.Element(legend_html))
 '''
 m.get_root().html.add_child(folium.Element(legend_html))
 
