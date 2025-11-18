@@ -10,7 +10,7 @@ st.set_page_config(page_title="Aba Security Oracle", layout="wide", initial_side
 
 st.title("ABA SECURITY ORACLE")
 st.markdown("**Built by: Team Udo (resilience-lgtm) – Deep Funding Hackathon 2025**")
-st.markdown("**Advanced Crime Hotspot & Tactical Response System**")
+st.markdown("**Advanced Predictive Policing & Tactical Deployment System**")
 
 # Load data
 incidents = pd.read_csv("incidents.csv")
@@ -20,7 +20,7 @@ police = pd.read_csv("police.csv")
 with st.sidebar:
     st.header("Tactical Command Center")
     predict_date = st.date_input("Select date for prediction:", datetime.now() + timedelta(days=1))
-    if st.button("GENERATE PREDICTION", type="primary", use_container_width=True):
+    if st.button("GENERATE TACTICAL BRIEF", type="primary", use_container_width=True):
         st.session_state.pred = predict_date
 
 # Base map
@@ -44,27 +44,27 @@ for _, row in police.iterrows():
     folium.CircleMarker([row.lat, row.lon], radius=11, color="darkblue", fill=True,
                         popup=f"<b>{row.get('name', 'Police Station')}</b>").add_to(m)
 
-# RECOMMENDED SAFE ESCAPE ROUTES — NOW RED (MOST VISIBLE!)
+# RECOMMENDED SAFE ESCAPE ROUTES — RED (CRITICAL)
 safe_routes = [
     [[5.116, 7.355], [5.105, 7.370]],
     [[5.100, 7.380], [5.110, 7.360]],
 ]
 for route in safe_routes:
-    folium.PolyLine(route, color="red", weight=12, opacity=0.95,
-                    popup="RECOMMENDED SAFE ESCAPE ROUTE").add_to(m)
+    folium.PolyLine(route, color="red", weight=14, opacity=0.98,
+                    popup="RECOMMENDED SAFE ESCAPE ROUTE — PROTECT THIS").add_to(m)
     folium.RegularPolygonMarker(location=route[-1], fill_color="red", number_of_sides=3,
-                                rotation=30, radius=14).add_to(m)
+                                rotation=30, radius=16).add_to(m)
 
-# CRIMINAL ESCAPE ROUTES — PURPLE DASHED (TO BE BLOCKED)
+# CRIMINAL ESCAPE ROUTES — PURPLE DASHED (BLOCK!)
 criminal_routes = [
     [[5.095, 7.375], [5.080, 7.390]],
     [[5.120, 7.350], [5.140, 7.330]],
 ]
 for route in criminal_routes:
-    folium.PolyLine(route, color="purple", weight=8, opacity=0.9, dash_array='10 10',
-                    popup="CRIMINAL ESCAPE ROUTE — DEPLOY CHECKPOINT").add_to(m)
+    folium.PolyLine(route, color="purple", weight=10, opacity=0.9, dash_array='15 15',
+                    popup="CRIMINAL ESCAPE ROUTE — SET CHECKPOINT").add_to(m)
 
-# PERFECT LEGEND — RED TEXT + RED ESCAPE ROUTE
+# PERFECT LEGEND
 legend_html = '''
 <div style="position: fixed; bottom: 30px; left: 30px; width: 340px; height: 260px; 
      background-color: white; border:3px solid #2c3e50; z-index:9999; font-size:15px; 
@@ -81,7 +81,7 @@ legend_html = '''
 '''
 m.get_root().html.add_child(folium.Element(legend_html))
 
-# Prediction Engine
+# BRAIN-BURSTING PREDICTION + REAL RECOMMENDATIONS
 if 'pred' in st.session_state:
     d = st.session_state.pred
     mul = 1.0
@@ -92,16 +92,24 @@ if 'pred' in st.session_state:
     base = [10, 8, 12, 7, 9, 8, 7, 10]
     pred = [int(b * mul) for b in base]
     
-    st.success(f"PREDICTION: {d.strftime('%A, %B %d, %Y')} — Risk ×{mul:.1f}")
-    high = [f"{names[i]} ({pred[i]})" for i, p in enumerate(pred) if p >= 30]
-    if high:
-        st.error("HIGH ALERT: " + " | ".join(high))
+    st.success(f"TACTICAL BRIEF: {d.strftime('%A, %B %d, %Y')} — Risk Multiplier: ×{mul:.1f}")
+    
+    high_zones = [f"{names[i]} ({pred[i]})" for i, p in enumerate(pred) if p >= 30]
+    
+    if high_zones:
+        st.error("HIGH THREAT DETECTED: " + " | ".join(high_zones))
+        st.warning("**IMMEDIATE DEPLOYMENT RECOMMENDED:**")
+        st.error("Deploy 25–40 officers to Osisioma & Ariaria by 05:00")
+        st.error("Set up 4 checkpoints on Ngwa Road & Faulks Road")
+        st.error("Block ALL purple criminal escape routes")
+        st.error("Use RED safe routes for VIP movement and evacuations")
         for i, c in enumerate(pred):
             if c >= 30:
-                folium.Circle([centers[i][0], centers[i][1]], radius=1400, color="#8B0000", weight=10, fill=False).add_to(m)
+                folium.Circle([centers[i][0], centers[i][1]], radius=1500, color="#8B0000", weight=12, fill=False).add_to(m)
+    else:
+        st.info("Moderate threat level. Maintain routine patrols.")
 
 # Display map
 st_folium(m, width=1200, height=720, key=f"map_{hash(str(st.session_state.get('pred', '')))}")
 
-# Footer
 st.caption("Live • Tactical • Professional • Built by Team Udo")
