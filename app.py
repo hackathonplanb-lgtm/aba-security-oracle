@@ -367,8 +367,10 @@ with tab1:
     names = ["Ariaria", "Ngwa Road", "Osisioma", "Ogbor Hill", "Ekeoha", "Asa Road", "Faulks Road", "Port Harcourt Rd"]
     
     # Hotspot Circles based on current incident count
-    for i, (lat, lon) in enumerate(centers):
-        count = sum(clusters == i)
+    for i, (lat_np, lon_np) in enumerate(centers):
+        # FIX: Explicitly cast NumPy types to native Python types for JSON serialization
+        lat, lon = float(lat_np), float(lon_np)
+        count = int(sum(clusters == i))
         
         # Current Risk Color Logic
         if count > 25: color, glow = "red", "#FF4500"
@@ -385,7 +387,8 @@ with tab1:
 
     # Individual Police Deployment (Blue Icons)
     for _, row in police.iterrows():
-        folium.CircleMarker([row.lat, row.lon], 
+        # FIX: Explicitly cast DataFrame values to native Python floats
+        folium.CircleMarker([float(row.lat), float(row.lon)], 
                             radius=15, 
                             color="#00BFFF", # Neon Blue
                             weight=3, 
@@ -413,8 +416,9 @@ with tab1:
         
         for i, c in enumerate(pred_values):
             if c >= 30: # CRITICAL/HIGH risk threshold
+                lat_pred, lon_pred = float(centers[i][0]), float(centers[i][1]) # Cast predicted center coordinates
                 folium.Circle(
-                    [centers[i][0], centers[i][1]], 
+                    [lat_pred, lon_pred], 
                     radius=2000, 
                     color="#FF4500", 
                     weight=10, 
