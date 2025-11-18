@@ -9,7 +9,7 @@ from sklearn.cluster import KMeans
 st.set_page_config(page_title="Aba Security Oracle", layout="wide", initial_sidebar_state="expanded")
 
 st.title("ABA SECURITY ORACLE")
-st.markdown("**Built by: Team Udo (resilience-)**")
+st.markdown("**Built by: Team Udo (resilience-lgtm) – Deep Funding Hackathon 2025**")
 st.markdown("**Advanced Crime Hotspot & Tactical Response System**")
 
 # Load data
@@ -103,4 +103,4 @@ if 'pred' in st.session_state:
 # Show map
 st_folium(m, width=1200, height=720, key=f"map_{st.session_state.get('pred', 'base')}")
 
-st.caption("Live • Tactical • Professional • Built by Team Udo)
+st.caption("Live • Tactical • Professional • Built by Chibuike & Team Great")
