@@ -10,7 +10,7 @@ from sklearn.cluster import KMeans
 st.set_page_config(page_title="Aba Security Oracle", layout="wide", initial_sidebar_state="expanded")
 
 st.title("🔮 ABA SECURITY ORACLE")
-st.markdown("**Built by: Chibuike Okeke (hackathonplanb-lgtm) – B.Sc Computer Science 2025**")
+st.markdown("**Built by: Team Great (resilience-lgtm) – Deep-Fuding-Hackathon-sketch**")
 st.markdown("**Real-Time Predictive Policing System for Aba, Abia State**")
 
 # Load data
