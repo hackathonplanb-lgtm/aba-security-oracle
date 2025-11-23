@@ -1,0 +1,143 @@
+type,lat,lon,date,desc
+Robbery,5.107,7.369,2024-04-15,Armed robbery at Ariaria Market
+Vandalism,5.08,7.35,2024-04-21,Railway damage in Osisioma
+kidnap,5.127,7.357,2024-07-12,"Young man kidnapped at Agwu Avenue, Brass Street"
+buglary,5.125,7.361,2025-03-18,night break in along Elaye Street
+Car theft,5.131,7.35,2024-08-11,woman's car stolen at gun point on Umuatako Street
+Cyber crime ,5.14,7.356,2025-06-20,fake bank call on Okolicha Road
+Vandalism,5.119,7.359,2025-03-21,store front forcefully damaged at Okigwe Road
+Petty Theft,5.125,7.358,2024-01-22,woman stripped of her phone at Calabar Street
+Murder,5.107,7.378,2025-02-07,Assassination attempt on man turned murder on East street
+Buglary,5.117,7.356,2024-11-24,retail store broken into at Cemetary road
+Robbery,5.115,7.354,2025-04-14,armed gang operation at Osusu Road
+Kidnapping,5.137,7.355,2024-05-04,elderly man abducted from his car at Kamalu Street
+Extortion,5.145,7.348,2024-09-27,payment forced along Abayi Road
+Car theft,5.095,7.373,2025-07-28,man's  car hijacked at Umunna Street
+Cult clash,5.095,7.373,2024-03-29,violent incident among cult boys along Ahoada Street
+Robbery,5.092,7.374,2025-04-30,"night time robbery at Ibadan street, Igwebuike Road"
+Violent extortion,5.095,7.369,2025-03-31,boy's phone stolen at gun point on Niger street
+Tricycle theft,5.092,7.371,2024-04-01,tricycle stolen by criminal passengers along Mbonu Street
+child theft,5.13,7.368,2023-04-02,little boy gets stolen from Alozie Street
+Vandalism,5.123,7.365,2025-04-03,shop window smashed by thieves on Margret Avenue
+Pickpocketting,5.103,7.393,2024-10-12,woman's money stolen by petty thieves at Enwereji street
+Car snatching,5.096,7.375,2024-09-05,man's car stolen from him at Ohanku Road
+Extortion,5.054,7.354,2025-04-06,forceful money collection from student at Obohia Road
+Assault,5.099,7.372,2024-04-07,brawl on Ngwa road
+Shoot out,5.099,7.354,2025-06-08,shoot out between cult rivals along Emejiaka street
+Substance possession,5.138,7.351,2025-05-19,young lads caught with hard drugs on Umuimo road
+Robbery,5.11,7.431,2024-04-21,Vehicle carrying gadgets robbed at gun point along Ebide Avenue
+Theft,5.112,7.405,2024-01-13,"Market goods stolen at WBHE, Umuokahia"
+Shoplifting,5.124,7.388,2023-11-12,"shoplifting at mega store at New Umuahia Road, Umuokahia"
+Tricycle theft,5.116,7.354,2025-04-13,"Man's keke stolen at gun point at Ehime street, off Osusu Road"
+POS Fraud,5.117,7.386,2024-08-14,Fake credit alert pulled of on girl at Egege Street
+Murder,5.117,7.357,2025-04-15,woman found dead at Akalana street
+Pickpocketting,5.133,7.36,2025-02-16,Man's phone gets missing at Immaculate Avenue
+Domestic violence,5.144,7.344,2024-09-17,spousal attack at Umueze Road
+Ambush,5.143,7.351,2025-01-08,"elderly man ambushed, beaten and robbed along Ayaba, Umueze Road"
+Robbery,5.14,7.348,2025-06-29,POS attendant robbed at Factory Road
+Theft,5.1172,7.3615,2022-09-21 07:49:00,Vehicle-related robbery reported at Osisioma Industrial Layout.
+Robbery,5.1203,7.3421,2017-12-16 14:49:00,Violent dispute at Brass Junction escalated leading to injuries.
+Homicide,5.1203,7.3421,2017-06-22 02:32:00,Armed robbery incident at a commercial center at Brass Junction.
+Theft,5.1604,7.3361,2023-02-06 04:37:00,Case of property theft from a business premises at Aba-Owerri Road Junction.
+Robbery,5.0814,7.3308,2017-03-23 15:22:00,Authorities reported severe bodily harm at Umuola Road.
+Kidnapping,5.1236,7.3998,2020-12-14 14:34:00,Suspected criminals fled the scene after confrontation at Cemetery Road.
+Homicide,5.0814,7.3308,2021-08-27 12:28:00,Armed individuals attacked civilians during the night at Umuola Road.
+Public Disorder/Riot,5.1045,7.3421,2022-10-12 22:47:00,Armed robbery incident at a commercial center at Brass Junction.
+Assault,5.1172,7.3615,2017-07-27 08:57:00,Victim was assaulted during a street altercation at Osisioma Industrial Layout.
+Rape,5.1203,7.3421,2022-12-24 04:36:00,Armed individuals attacked civilians during the night at Brass Junction.
+Police Attack/Homicide,5.1635,7.3759,2017-02-03 10:19:00,Case of property theft from a business premises at Ariaria Market.
+Homicide,5.1172,7.3615,2017-11-27 02:48:00,Case of property theft from a business premises at Osisioma Industrial Layout.
+Assault,5.1172,7.3615,2017-05-24 08:27:00,Suspected criminals fled the scene after confrontation at Osisioma Industrial Layout.
+Robbery/Homicide,5.1262,7.3984,2023-12-20 14:39:00,Armed individuals attacked civilians during the night at Aba-Owerri Road Junction.
+Assault,5.1203,7.3421,2017-02-13 18:33:00,Case of property theft from a business premises at Brass Junction.
+Public Disorder/Riot,5.1735,7.3661,2022-02-14 09:41:00,Security forces responded to reports of unrest at Ndiegoro.
+Public Disorder/Riot,5.1735,7.3661,2017-04-26 13:28:00,Armed individuals attacked civilians during the night at Ndiegoro.
+Public Disorder/Riot,5.1735,7.3661,2017-11-17 01:48:00,Case of property theft from a business premises at Ndiegoro.
+Kidnapping,5.1203,7.3421,2017-10-05 16:43:00,Authorities reported severe bodily harm at Brass Junction.
+Robbery/Homicide,5.1635,7.3759,2017-09-17 10:21:00,Victim was assaulted during a street altercation at Ariaria Market.
+Police Attack/Homicide,5.0814,7.3308,2017-04-12 07:52:00,Violent dispute escalated leading to injuries at Umuola Road.
+Robbery/Homicide,5.0814,7.3308,2017-10-02 11:59:00,Armed individuals attacked civilians during the night at Umuola Road.
+Robbery,5.1228,7.3391,2017-03-03 05:09:00,Authorities reported severe bodily harm at Faulks Road.
+Robbery/Homicide,5.1322,7.3678,2017-04-22 19:49:00,Incident reported involving physical confrontation at Cemetery Road.
+Assault,5.1604,7.3361,2017-11-24 06:53:00,Armed robbery incident at a commercial center at Aba-Owerri Road Junction.
+Robbery,5.0814,7.3308,2024-12-18 15:21:00,Authorities reported severe bodily harm at Umuola Road.
+Assault,5.1236,7.3998,2017-09-19 15:57:00,Vehicle-related robbery reported in the area of Cemetery Road.
+Police Attack/Homicide,5.1604,7.3361,2023-05-11 07:08:00,Suspected criminals fled the scene after confrontation at Aba-Owerri Road Junction.
+Theft,5.1635,7.3759,2017-03-01 06:40:00,Suspected criminals fled the scene after confrontation at Ariaria Market.
+Assault,5.0814,7.3308,2023-07-02 05:14:00,Vehicle-related robbery reported in the area of Umuola Road.
+Theft,5.1735,7.3661,2021-07-14 06:26:00,Security forces responded to reports of unrest at Ndiegoro.
+Assault,5.1635,7.3759,2022-03-04 08:34:00,Authorities reported severe bodily harm at Ariaria Market.
+Police Attack/Homicide,5.1635,7.3759,2017-06-21 18:42:00,Vehicle-related robbery reported in the area of Ariaria Market.
+Robbery/Homicide,5.1228,7.3391,2013-02-19 09:42:00,Security forces responded to reports of unrest at Faulks Road.
+Kidnapping,5.0814,7.3308,2017-03-14 19:04:00,Suspected criminals fled the scene after confrontation at Umuola Road.
+Theft,5.1635,7.3759,2017-01-18 04:50:00,Security forces responded to reports of unrest at Ariaria Market.
+Rape,5.1635,7.3759,2017-01-26 17:27:00,Victim was assaulted during a street altercation at Ariaria Market.
+Homicide,5.1228,7.3391,2017-02-09 05:22:00,Case of property theft from a business premises at Faulks Road.
+Public Disorder/Riot,5.1635,7.3759,2017-07-19 01:22:00,Authorities reported severe bodily harm at Ariaria Market.
+Public Disorder/Riot,5.1236,7.3998,2017-08-10 03:47:00,Armed individuals attacked civilians during the night at Cemetery Road.
+Rape,5.1236,7.3998,2017-10-27 23:17:00,Security forces responded to reports of unrest at Cemetery Road.
+Rape,5.1735,7.3661,2022-03-13 16:29:00,Victim was assaulted during a street altercation at Ndiegoro.
+Robbery,5.1203,7.3421,2017-12-22 16:53:00,Suspected criminals fled the scene after confrontation at Brass Junction.
+Police Attack/Homicide,5.1652,7.3742,2024-04-01 13:39:00,Security forces responded to reports of unrest at Umuola Road.
+Kidnapping,5.1604,7.3361,2017-11-18 21:40:00,Violent dispute escalated leading to injuries at Aba-Owerri Road Junction.
+Assault,5.1203,7.3421,2025-10-14 03:25:00,Case of property theft from a business premises at Brass Junction.
+Assault,5.1203,7.3421,2025-07-25 08:20:00,Vehicle-related robbery reported in the area of Brass Junction.
+Rape,5.1203,7.3421,2017-09-11 07:02:00,Vehicle-related robbery reported in the area of Brass Junction.
+Theft,5.1604,7.3361,2017-07-10 02:50:00,Armed robbery incident at a commercial center at Aba-Owerri Road Junction.
+Assault,5.1604,7.3361,2017-12-22 07:33:00,Vehicle-related robbery reported in the area of Aba-Owerri Road Junction.
+Homicide,5.1604,7.3361,2017-02-11 18:31:00,Suspected criminals fled the scene after confrontation at Aba-Owerri Road Junction.
+Public Disorder/Riot,5.1228,7.3391,2017-09-02 03:05:00,Suspected criminals fled after confrontation at Faulks Road.
+Robbery,5.103,7.366,2025-01-05,Nighttime shop robbery at Ariaria market
+Assault,5.112,7.373,2025-01-08,Street fight injury at Ngwa road
+Burglary,5.0985,7.3575,2025-01-12,House break-in at Umungasi
+Kidnapping,5.099,7.35,2025-01-14,Trader abducted along Aba-Owerri road
+Fraud,5.11,7.365,2025-01-18,ATM card scam at Asa road
+Theft,5.1065,7.3705,2025-01-21,Phone snatched along Cemetery road
+Extortion,5.105,7.355,2025-01-25,Cash extorted along Faulks road
+Vandalism,5.108,7.368,2025-01-28,Car windows smashed along Eziukwu road
+Armed Robbery,5.1075,7.362,2025-02-02,Armed men invade shop at Clifford road
+Cult Clash,5.12,7.38,2025-02-04,Cult groups fight at Ogbor hill
+Pickpocketing,5.1085,7.3655,2025-02-06,Wallet stolen at Shopping centre
+Domestic Violence,5.09,7.35,2025-02-09,Spousal assault case at Abayi
+Arson,5.115,7.375,2025-02-12,Kiosk set ablaze along Uratta road
+Cybercrime,5.109,7.36,2025-02-15,Social media scam at Tenant road
+Murder,5.118,7.372,2025-02-18,Man found dead at Umule
+Child Theft,5.106,7.369,2025-02-22,Infant stolen at Aba general hospital
+Car Theft,5.107,7.361,2025-02-26,Parked car stolen along Brass street
+Drug Possession,5.0995,7.357,2025-02-28,Suspect caught with drugs at Over Rail
+Robbery,5.111,7.37,2025-03-03,Motorcycle robbed along Omuma roaf
+Kidnapping,5.08,7.34,2025-03-05,Driver abducted along Osisioma flyover
+Assault,5.1055,7.3655,2025-03-07,Youth stabbed along Azikiwe road
+Burglary,5.1045,7.3625,2025-03-10,Night break-in at Ibadan street
+Extortion,5.13,7.39,2025-03-12,Forced money payment along Ikot Ekpene road
+Fraud,5.115,7.38,2025-03-15,POS fraud attempt along Omoba road
+Theft,5.107,7.364,2025-03-18,Bag stolen at Milverton area
+Robbery,5.1125,7.3735,2025-03-20,Late-night attack at Ngwa road
+Vandalism,5.106,7.368,2025-03-24,Storefront damaged along Hospital road
+Cybercrime,5.108,7.367,2025-03-26,Fake loan scam at School road
+Kidnapping,5.121,7.381,2025-03-29,Woman kidnapped at Ogbor hill bridge
+Cult Activity,5.12,7.37,2025-04-01,Cult initiation spotted at Aba North
+Extortion,5.099,7.36,2025-04-04,Payment forced at Waterside area
+Assault,5.1,7.35,2025-04-06,Brawl at bar along Aba road
+Drug Dealing,5.1035,7.367,2025-04-08,Street drug sales at Ariaria
+Burglary,5.092,7.352,2025-04-12,Shop broken into along MCC road
+Theft,5.1185,7.374,2025-04-15,Market goods stolen at Umuola road
+Robbery,5.11,7.36,2025-04-18,Armed gang spotted along Okigwe road
+Car Theft,5.095,7.348,2025-04-20,Vehicle disappeared along Umuoba road
+Kidnapping,5.1065,7.3635,2025-04-23,Child abducted at Aba main park
+Fraud,5.091,7.351,2025-04-26,Check fraud attempt at Abayi village
+Assault,5.1,7.34,2025-04-29,Victim beaten along Port Harcout road
+Murder,5.093,7.352,2025-05-01,Body discovered along Ngwa High school
+Arson,5.094,7.353,2025-05-03,Shop burnt at Old Express road
+Extortion,5.1075,7.3645,2025-05-06,Forced payment demand at Ekeoha market
+Cybercrime,5.102,7.3665,2025-05-10,Phishing attempt at Ariaria
+Theft,5.115,7.37,2025-05-13,Motorcycle stolen at Eziama
+Robbery,5.098,7.35,2025-05-16,Armed attack market at Aba Poly
+Cult Clash,5.1205,7.3815,2025-05-18,Midnight cult fight at Ogbor hill market
+Assault,5.109,7.368,2025-05-20,Student injured at Osusu road
+Theft,5.107,7.364,2025-05-22,Shoplifting incident at Aba city centre
+Burglary,5.108,7.365,2025-05-25,Residence broken into at Aba ring road
+Robbery,5.111,7.361,2025-05-28,Bus station hold-up at Ngwa market
+Assault,5.099,7.34,2025-05-30,Motorist attacked along Rumola roadside
+Robbery,5.104,7.3675,2025-06-02,Evening shop robbery at Ariaria extension
+Burglary,5.1062952,7.3668607,2025-06-05,Store break-in at Shopping centre
